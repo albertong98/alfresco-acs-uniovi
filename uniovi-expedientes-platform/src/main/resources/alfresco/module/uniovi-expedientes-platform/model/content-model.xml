@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model name="acme:contentModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+<model name="uo:contentModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
 
     <!-- Optional meta-data about the model -->
-    <description>Sample Document Model</description>
-    <author>My Name</author>
+    <description>UO Content Model</description>
     <version>1.0</version>
 
     <imports>
@@ -20,17 +19,16 @@
         <namespace uri="http://www.uniovi.es/model/content/1.0" prefix="uo"/>
     </namespaces>
 
-    <constraints>
-    </constraints>
-
     <!-- ===============================================================================================================
         Constraints, Types, and Aspects go here...
         -->
 
     <types>
+        <type name="uo:expediente"></type>
     </types>
 
     <aspects>
+        <aspect name="uo:expedienteAsp"></aspect>
     </aspects>
 
 </model>
