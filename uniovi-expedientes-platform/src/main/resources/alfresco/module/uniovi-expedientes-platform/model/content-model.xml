@@ -24,11 +24,62 @@
         -->
 
     <types>
-        <type name="uo:expediente"></type>
+        <type name="uo:record">
+            <title>Expediente Universitario</title>
+            <parent>cm:folder</parent>
+        </type>
+
+        <type name="uo:student">
+            <title>Alumno</title>
+        </type>
     </types>
 
     <aspects>
-        <aspect name="uo:expedienteAsp"></aspect>
+        <aspect name="uo:studentAsp">
+            <properties>
+                <property name="uo:id">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+
+                <property name="uo:name">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+
+                <property name="uo:surname">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+
+        <aspect name="uo:recordAsp">
+            <properties>
+                <property name="uo:recordNumber">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true"/>
+                </property>
+
+                <property name="uo:openingDate">
+                    <type>d:date</type>
+                    <mandatory>true</mandatory>
+                </property>
+
+                <property name="uo:status">
+                    <type>d:text</type>
+                </property>
+
+                <property name="uo:title">
+                    <type>d:text</type>
+                </property>
+
+                <property name="uo:center">
+                    <type>d:text</type>
+                </property>
+            </properties>
+        </aspect>
     </aspects>
 
 </model>

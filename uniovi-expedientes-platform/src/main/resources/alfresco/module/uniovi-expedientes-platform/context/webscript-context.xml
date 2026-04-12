@@ -19,4 +19,11 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="org.uniovi.webscript.record.CreateRecord" class="org.uniovi.webscript.record.CreateRecord">
+		<property name="recordService" ref="org.uniovi.service.RecordService"/>
+	</bean>
+	<bean id="org.uniovi.webscript.student.CreateStudent" class="org.uniovi.webscript.student.CreateStudent">
+		<property name="studentService" ref="org.uniovi.service.StudentService"/>
+	</bean>
 </beans>
