@@ -20,10 +20,25 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="org.uniovi.webscript.record.CreateRecord" class="org.uniovi.webscript.record.CreateRecord">
+	<!-- RECORD -->
+	<bean id="webscript.org.uniovi.records.record.post" class="org.uniovi.webscript.record.CreateRecord" parent="webscript">
 		<property name="recordService" ref="org.uniovi.service.RecordService"/>
 	</bean>
-	<bean id="org.uniovi.webscript.student.CreateStudent" class="org.uniovi.webscript.student.CreateStudent">
+	<bean id="webscript.org.uniovi.records.record.put" class="org.uniovi.webscript.record.UpdateRecord" parent="webscript">
+		<property name="recordService" ref="org.uniovi.service.RecordService"/>
+	</bean>
+	<bean id="webscript.org.uniovi.records.record.get" class="org.uniovi.webscript.record.GetRecord" parent="webscript">
+		<property name="recordService" ref="org.uniovi.service.RecordService"/>
+	</bean>
+
+	<!-- STUDENT -->
+	<bean id="webscript.org.uniovi.students.student.post" class="org.uniovi.webscript.student.CreateStudent" parent="webscript">
+		<property name="studentService" ref="org.uniovi.service.StudentService"/>
+	</bean>
+	<bean id="webscript.org.uniovi.students.student.put" class="org.uniovi.webscript.student.UpdateStudent" parent="webscript">
+		<property name="studentService" ref="org.uniovi.service.StudentService"/>
+	</bean>
+	<bean id="webscript.org.uniovi.students.student.get" class="org.uniovi.webscript.student.GetStudent" parent="webscript">
 		<property name="studentService" ref="org.uniovi.service.StudentService"/>
 	</bean>
 </beans>

@@ -3,5 +3,7 @@ package org.uniovi.service;
 import org.uniovi.dto.Record;
 
 public interface RecordService {
-    public String createExpediente(Record record);
+    String createRecord(Record record);
+    String updateRecord(Record record);
+    Record getRecord(String UUID);
 }

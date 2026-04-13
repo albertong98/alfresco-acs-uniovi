@@ -1,0 +1,40 @@
+package org.uniovi.webscript.command;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.alfresco.error.AlfrescoRuntimeException;
+import org.alfresco.repo.content.MimetypeMap;
+import org.apache.http.HttpStatus;
+import org.json.JSONException;
+import org.springframework.extensions.webscripts.AbstractWebScript;
+import org.springframework.extensions.webscripts.WebScriptException;
+import org.springframework.extensions.webscripts.WebScriptRequest;
+import org.springframework.extensions.webscripts.WebScriptResponse;
+
+
+import java.io.IOException;
+
+public abstract class SaveWebScript extends AbstractWebScript {
+    protected Gson gson;
+
+    public SaveWebScript(){
+        gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
+    }
+    @Override
+    public void execute(WebScriptRequest webScriptRequest, WebScriptResponse webScriptResponse) throws IOException {
+        try{
+            String ID = executeSave(webScriptRequest.getContent().getContent());
+
+            webScriptResponse.setStatus(HttpStatus.SC_CREATED);
+            webScriptResponse.setContentType(MimetypeMap.MIMETYPE_TEXT_PLAIN);
+            webScriptResponse.getWriter().write(ID);
+        } catch (IllegalArgumentException | JSONException e){
+            throw new WebScriptException(HttpStatus.SC_BAD_REQUEST,e.getMessage());
+        }catch(AlfrescoRuntimeException e){
+            throw new WebScriptException(HttpStatus.SC_INTERNAL_SERVER_ERROR,"Internal server Error");
+        }
+    }
+
+    public abstract String executeSave(String json);
+
+}

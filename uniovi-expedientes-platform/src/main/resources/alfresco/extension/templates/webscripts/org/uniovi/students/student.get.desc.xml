@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Get an student</shortname>
+    <description>GET - Get an student</description>
+    <url>/uniovi/student/{studentUUID}</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <family>Uniovi</family>
+</webscript>

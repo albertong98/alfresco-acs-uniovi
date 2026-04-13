@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Update record</shortname>
+    <description>PUT - Update a Record</description>
+    <url>/uniovi/record</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <family>Uniovi</family>
+</webscript>

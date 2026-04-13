@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Create record</shortname>
+    <description>POST - Create a Record</description>
+    <url>/uniovi/record</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <family>Uniovi</family>
+</webscript>

@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Get a record</shortname>
+    <description>GET - Get a Record</description>
+    <url>/uniovi/record/{recordUUID}</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <family>Uniovi</family>
+</webscript>

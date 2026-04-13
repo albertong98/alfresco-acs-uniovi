@@ -1,7 +1,10 @@
 package org.uniovi.service;
 
+import org.uniovi.dto.Record;
 import org.uniovi.dto.Student;
 
 public interface StudentService {
-    public String createStudent(Student student);
+    String createStudent(Student student);
+    String updateStudent(Record record);
+    Student getStudent(String UUID);
 }

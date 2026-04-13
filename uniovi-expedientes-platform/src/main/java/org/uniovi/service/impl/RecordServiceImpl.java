@@ -11,7 +11,17 @@ public class RecordServiceImpl implements RecordService {
     private NodeService nodeService;
     private SearchService searchService;
     @Override
-    public String createExpediente(Record record) {
+    public String createRecord(Record record) {
         return "En desarrollo";
+    }
+
+    @Override
+    public String updateRecord(Record record) {
+        return "En desarrollo";
+    }
+
+    @Override
+    public Record getRecord(String UUID) {
+        return null;
     }
 }

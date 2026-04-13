@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Create an student</shortname>
+    <description>POST - Create an student</description>
+    <url>/uniovi/student</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <family>Uniovi</family>
+</webscript>
