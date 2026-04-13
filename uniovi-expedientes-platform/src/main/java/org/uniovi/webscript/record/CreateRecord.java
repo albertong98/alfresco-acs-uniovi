@@ -11,7 +11,6 @@ public class CreateRecord extends SaveWebScript {
     private RecordService recordService;
     @Override
     public String executeSave(String json) {
-        Record record = gson.fromJson(json, Record.class);
-        return recordService.createRecord(record);
+        return recordService.createRecord(gson.fromJson(json, Record.class));
     }
 }

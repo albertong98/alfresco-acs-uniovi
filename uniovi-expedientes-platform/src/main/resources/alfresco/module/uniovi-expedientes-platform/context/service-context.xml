@@ -25,7 +25,13 @@
         <property name="nodeService" ref="NodeService"/>
         <property name="searchService" ref="SearchService"/>
     </bean>
+
     <bean id="org.uniovi.service.RecordService" class="org.uniovi.service.impl.RecordServiceImpl">
+        <property name="nodeService" ref="NodeService"/>
+        <property name="searchService" ref="SearchService"/>
+    </bean>
+
+    <bean id="org.uniovi.service.TaskService" class="org.uniovi.service.impl.TaskServiceImpl">
         <property name="nodeService" ref="NodeService"/>
         <property name="searchService" ref="SearchService"/>
     </bean>

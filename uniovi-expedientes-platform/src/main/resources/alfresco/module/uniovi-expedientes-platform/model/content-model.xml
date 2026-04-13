@@ -32,6 +32,11 @@
         <type name="uo:student">
             <title>Alumno</title>
         </type>
+
+        <type name="uo:task">
+            <title>Tarea</title>
+            <parent>cm:folder</parent>
+        </type>
     </types>
 
     <aspects>
@@ -67,7 +72,7 @@
                     <mandatory>true</mandatory>
                 </property>
 
-                <property name="uo:status">
+                <property name="uo:recordStatus">
                     <type>d:text</type>
                 </property>
 
@@ -76,6 +81,36 @@
                 </property>
 
                 <property name="uo:center">
+                    <type>d:text</type>
+                </property>
+            </properties>
+        </aspect>
+
+        <aspect name="uo:taskAsp">
+            <properties>
+                <property name="uo:title">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+
+                <property name="uo:description">
+                    <type>d:text</type>
+                </property>
+
+                <property name="uo:studentId">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+
+                <property name="uo:dueDate">
+                    <type>d:date</type>
+                </property>
+
+                <property name="uo:score">
+                    <type>d:float</type>
+                </property>
+
+                <property name="uo:taskStatus">
                     <type>d:text</type>
                 </property>
             </properties>

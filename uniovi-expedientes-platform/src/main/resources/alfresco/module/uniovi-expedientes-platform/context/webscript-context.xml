@@ -41,4 +41,15 @@
 	<bean id="webscript.org.uniovi.students.student.get" class="org.uniovi.webscript.student.GetStudent" parent="webscript">
 		<property name="studentService" ref="org.uniovi.service.StudentService"/>
 	</bean>
+
+	<!-- TASK -->
+	<bean id="webscript.org.uniovi.tasks.task.post" class="org.uniovi.webscript.task.CreateTask" parent="webscript">
+		<property name="taskService" ref="org.uniovi.service.TaskService"/>
+	</bean>
+	<bean id="webscript.org.uniovi.tasks.task.put" class="org.uniovi.webscript.task.UpdateTask" parent="webscript">
+		<property name="taskService" ref="org.uniovi.service.TaskService"/>
+	</bean>
+	<bean id="webscript.org.uniovi.tasks.task.get" class="org.uniovi.webscript.task.GetTask" parent="webscript">
+		<property name="taskService" ref="org.uniovi.service.TaskService"/>
+	</bean>
 </beans>

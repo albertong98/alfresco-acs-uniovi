@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Update a task</shortname>
+    <description>PUT - Update a task</description>
+    <url>/uniovi/task</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <family>Uniovi</family>
+</webscript>

@@ -11,6 +11,6 @@ public class Record {
     public String recordNumber;
     public Student student;
     public Date openingDate;
-    public String status;
+    public String recordStatus;
     public String center;
 }

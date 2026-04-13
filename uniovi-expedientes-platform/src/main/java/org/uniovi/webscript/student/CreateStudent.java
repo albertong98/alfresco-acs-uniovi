@@ -10,7 +10,6 @@ public class CreateStudent extends SaveWebScript {
     private StudentService studentService;
     @Override
     public String executeSave(String json) {
-        Student student = gson.fromJson(json,Student.class);
-        return studentService.createStudent(student);
+        return studentService.createStudent(gson.fromJson(json,Student.class));
     }
 }

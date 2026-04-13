@@ -10,7 +10,6 @@ public class UpdateRecord extends SaveWebScript {
     private RecordService recordService;
     @Override
     public String executeSave(String json) {
-        Record record = gson.fromJson(json, Record.class);
-        return recordService.updateRecord(record);
+        return recordService.updateRecord(gson.fromJson(json, Record.class));
     }
 }
