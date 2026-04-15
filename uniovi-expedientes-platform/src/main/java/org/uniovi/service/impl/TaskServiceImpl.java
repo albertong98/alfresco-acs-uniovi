@@ -1,10 +1,12 @@
 package org.uniovi.service.impl;
 
+import lombok.Setter;
 import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.service.cmr.search.SearchService;
 import org.uniovi.dto.Task;
 import org.uniovi.service.TaskService;
 
+@Setter
 public class TaskServiceImpl implements TaskService {
     private NodeService nodeService;
     private SearchService searchService;

@@ -13,4 +13,6 @@ public class Record {
     public Date openingDate;
     public String recordStatus;
     public String center;
+    public String type;
+    public String responsible;
 }

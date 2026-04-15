@@ -10,7 +10,7 @@ import java.util.Date;
 public class Task {
     public String title;
     public String description;
-    public String studentId;
+    public Student student;
     public Date dueDate;
     public float score;
     public String taskStatus;
