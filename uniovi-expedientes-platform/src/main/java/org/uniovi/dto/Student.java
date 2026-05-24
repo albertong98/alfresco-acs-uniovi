@@ -1,12 +1,18 @@
 package org.uniovi.dto;
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
-@AllArgsConstructor
 public class Student {
+    public String uuid;
     public String id;
+    public String uo;
     public String name;
     public String surname;
+
+    public Student(String uuid,String id, String uo,String name, String surname) {
+        this.uuid = uuid;
+        this.id = id;
+        this.uo = uo;
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public Student(){}
 }

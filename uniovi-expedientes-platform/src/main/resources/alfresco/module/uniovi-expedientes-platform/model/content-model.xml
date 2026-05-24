@@ -37,22 +37,35 @@
             <title>Tarea</title>
             <parent>cm:folder</parent>
         </type>
+
+        <type name="uo:yearFolder">
+            <title>Tarea</title>
+            <parent>cm:folder</parent>
+        </type>
+
+        <type name="uo:monthFolder">
+            <title>Tarea</title>
+            <parent>cm:folder</parent>
+        </type>
     </types>
 
     <aspects>
         <aspect name="uo:studentAsp">
             <properties>
-                <property name="uo:id">
+                <property name="uo:studentId">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="uo:studentUo">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="uo:studentName">
                     <type>d:text</type>
                     <mandatory>true</mandatory>
                 </property>
 
-                <property name="uo:name">
-                    <type>d:text</type>
-                    <mandatory>true</mandatory>
-                </property>
-
-                <property name="uo:surname">
+                <property name="uo:studentSurname">
                     <type>d:text</type>
                     <mandatory>true</mandatory>
                 </property>
@@ -72,16 +85,7 @@
                     <mandatory>true</mandatory>
                 </property>
 
-                <property name="uo:studentUUID">
-                    <type>d:date</type>
-                    <mandatory>true</mandatory>
-                </property>
-
-                <property name="uo:recordStatus">
-                    <type>d:text</type>
-                </property>
-
-                <property name="uo:title">
+                <property name="uo:recordTitle">
                     <type>d:text</type>
                 </property>
 
@@ -101,18 +105,13 @@
 
         <aspect name="uo:taskAsp">
             <properties>
-                <property name="uo:title">
+                <property name="uo:taskTitle">
                     <type>d:text</type>
                     <mandatory>true</mandatory>
                 </property>
 
                 <property name="uo:description">
                     <type>d:text</type>
-                </property>
-
-                <property name="uo:studentUUID">
-                    <type>d:text</type>
-                    <mandatory>true</mandatory>
                 </property>
 
                 <property name="uo:dueDate">
@@ -122,8 +121,21 @@
                 <property name="uo:score">
                     <type>d:float</type>
                 </property>
+            </properties>
+        </aspect>
 
-                <property name="uo:taskStatus">
+        <aspect name="uo:studentsAsp">
+            <properties>
+                <property name="uo:studentUUID">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+
+        <aspect name="uo:statusAsp">
+            <properties>
+                <property name="uo:status">
                     <type>d:text</type>
                 </property>
             </properties>

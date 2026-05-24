@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Update task score</shortname>
+    <description>PUT - Update task score</description>
+    <url>/uniovi/score</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <family>Uniovi</family>
+</webscript>

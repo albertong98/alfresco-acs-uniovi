@@ -4,12 +4,11 @@ import org.uniovi.dto.Task;
 import org.uniovi.service.TaskService;
 import org.uniovi.webscript.command.SaveWebScript;
 
-public class UpdateTask extends SaveWebScript {
+public class UpdateScore extends SaveWebScript {
     private TaskService taskService;
-
     @Override
     public String executeSave(String json) {
-        return taskService.updateTask(gson.fromJson(json, Task.class));
+        return taskService.updateScore(gson.fromJson(json, Task.class));
     }
 
     public void setTaskService(TaskService taskService) {
