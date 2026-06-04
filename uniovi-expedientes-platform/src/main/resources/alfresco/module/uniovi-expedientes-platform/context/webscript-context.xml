@@ -55,4 +55,16 @@
 	<bean id="webscript.org.uniovi.tasks.score.put" class="org.uniovi.webscript.task.UpdateScore" parent="webscript">
 		<property name="taskService" ref="org.uniovi.service.TaskService"/>
 	</bean>
+
+	<!-- SUBJECT -->
+	<bean id="webscript.org.uniovi.subjects.subject.post" class="org.uniovi.webscript.subject.CreateSubject" parent="webscript">
+		<property name="subjectService" ref="org.uniovi.service.SubjectService"/>
+	</bean>
+	<bean id="webscript.org.uniovi.subjects.subject.put" class="org.uniovi.webscript.subject.UpdateSubject" parent="webscript">
+		<property name="subjectService" ref="org.uniovi.service.SubjectService"/>
+	</bean>
+	<bean id="webscript.org.uniovi.subjects.subject.get" class="org.uniovi.webscript.subject.GetSubject" parent="webscript">
+		<property name="subjectService" ref="org.uniovi.service.SubjectService"/>
+	</bean>
+
 </beans>

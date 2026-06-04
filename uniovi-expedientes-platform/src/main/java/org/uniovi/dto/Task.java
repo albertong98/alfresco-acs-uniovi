@@ -1,24 +1,26 @@
 package org.uniovi.dto;
 
+import org.springframework.extensions.webscripts.servlet.FormData;
+
 import java.util.Date;
+import java.util.Map;
 
 public class Task {
     public String uuid;
+    public String subjectUUID;
     public String title;
     public String description;
-    public Student student;
-    public Date dueDate;
-    public Float score;
-    public String taskStatus;
 
-    public Task(String uuid, String title, String description, Student student, Date dueDate, Float score, String taskStatus) {
+    public Date dueDate;
+
+    public Map<String, FormData.FormField> files;
+
+    public Task(String uuid, String subjectUUID, String title, String description, Date dueDate) {
         this.uuid = uuid;
+        this.subjectUUID = subjectUUID;
         this.title = title;
         this.description = description;
-        this.student = student;
         this.dueDate = dueDate;
-        this.score = score;
-        this.taskStatus = taskStatus;
     }
 
     public Task(){}

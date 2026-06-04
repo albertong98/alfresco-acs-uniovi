@@ -1,10 +1,11 @@
 package org.uniovi.service.impl;
 
 import org.alfresco.service.cmr.repository.NodeRef;
-import org.alfresco.service.cmr.search.SearchService;
+import org.apache.tika.utils.StringUtils;
 import org.uniovi.dto.Student;
 import org.uniovi.model.UnioviContentModel;
 import org.uniovi.service.NodeService;
+import org.uniovi.service.SearchService;
 import org.uniovi.service.StudentService;
 
 public class StudentServiceImpl implements StudentService {
@@ -12,7 +13,7 @@ public class StudentServiceImpl implements StudentService {
     private SearchService searchService;
     @Override
     public String createStudent(Student student) {
-        return saveStudent(student,nodeService.createNodeRef(UnioviContentModel.TYPE_STUDENT,UnioviContentModel.studentsSiteName));
+        return saveStudent(student,nodeService.createNodeRefInYearFolder(UnioviContentModel.TYPE_STUDENT,UnioviContentModel.studentsSiteName));
     }
 
     @Override
@@ -23,6 +24,17 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student getStudent(String UUID) {
         return getStudentProperties(nodeService.getNodeRef(UUID));
+    }
+
+    @Override
+    public NodeRef findStudentFolderByUO(String uo) {
+        return searchService.findOneNodeByPropertyAndType(UnioviContentModel.TYPE_STUDENT,UnioviContentModel.PROP_STUDENT_UO,uo);
+    }
+
+    @Override
+    public void setStudent(Student student, NodeRef nodeRef) {
+        String uuid = StringUtils.isBlank(student.uuid) ? createStudent(student) : student.uuid;
+        nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_STUDENT_UUID,uuid ,nodeRef,true);
     }
 
     private void setPropertiesFromDto(Student student, NodeRef node) {

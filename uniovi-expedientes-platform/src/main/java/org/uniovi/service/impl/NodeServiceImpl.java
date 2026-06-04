@@ -33,7 +33,7 @@ public class NodeServiceImpl implements NodeService {
     }
 
     @Override
-    public void checkAndSetCollectionProperty(QName qname, HashSet<Serializable> value, NodeRef node, boolean mandatory) {
+    public void checkAndSetCollectionProperty(QName qname, HashSet<String> value, NodeRef node, boolean mandatory) {
         if(mandatory && CollectionUtils.isEmpty(value))
             throw new IllegalArgumentException(String.format("Property %s is mandatory",qname));
 
@@ -49,7 +49,7 @@ public class NodeServiceImpl implements NodeService {
     }
 
     @Override
-    public NodeRef createNodeRef(QName type, String siteID) {
+    public NodeRef createNodeRefInYearFolder(QName type, String siteID) {
         NodeRef documentLibrary = siteService.getContainer(siteID,"documentLibrary");
         String year = String.valueOf(LocalDate.now().getYear());
         NodeRef parent = nodeService.getChildByName(documentLibrary,ContentModel.ASSOC_CONTAINS,year);
@@ -62,7 +62,7 @@ public class NodeServiceImpl implements NodeService {
                     Map.of(ContentModel.PROP_NAME,year)
             ).getChildRef();
         }
-        return nodeService.createNode(parent, ContentModel.ASSOC_CONTAINS,ContentModel.ASSOC_CONTAINS,type).getChildRef();
+        return createNodeRef(type,parent);
     }
 
     @Override
@@ -76,6 +76,11 @@ public class NodeServiceImpl implements NodeService {
             throw new IllegalArgumentException(String.format("NodeRef with UUID %s does not exist",UUID));
 
         return nodeRef;
+    }
+
+    @Override
+    public NodeRef createNodeRef(QName type, NodeRef parent) {
+        return nodeService.createNode(parent, ContentModel.ASSOC_CONTAINS,ContentModel.ASSOC_CONTAINS,type).getChildRef();
     }
 
     private <T extends Serializable> T getProperty(NodeRef nodeRef, QName property, Class<T> clazz) {
@@ -97,8 +102,8 @@ public class NodeServiceImpl implements NodeService {
     }
 
     @Override
-    public ArrayList<Serializable> getCollectionProperty(NodeRef nodeRef, QName property) {
-        return getProperty(nodeRef,property, ArrayList.class);
+    public HashSet<String> getCollectionProperty(NodeRef nodeRef, QName property) {
+        return getProperty(nodeRef,property, HashSet.class);
     }
 
     //SETTERS

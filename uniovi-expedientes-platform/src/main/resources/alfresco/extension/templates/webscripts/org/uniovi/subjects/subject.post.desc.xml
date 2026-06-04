@@ -1,7 +1,7 @@
 <webscript>
-    <shortname>Update a studentTask</shortname>
-    <description>PUT - Update a studentTask</description>
-    <url>/uniovi/studentTask</url>
+    <shortname>Create a subject</shortname>
+    <description>POST - Create a subject</description>
+    <url>/uniovi/subject</url>
     <format default="json"/>
     <authentication>user</authentication>
     <transaction>required</transaction>

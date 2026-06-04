@@ -23,21 +23,36 @@
 
     <bean id="org.uniovi.service.StudentService" class="org.uniovi.service.impl.StudentServiceImpl">
         <property name="nodeService" ref="org.uniovi.service.NodeService"/>
-        <property name="searchService" ref="SearchService"/>
     </bean>
 
     <bean id="org.uniovi.service.RecordService" class="org.uniovi.service.impl.RecordServiceImpl">
         <property name="nodeService" ref="org.uniovi.service.NodeService"/>
-        <property name="searchService" ref="SearchService"/>
+        <property name="studentService" ref="org.uniovi.service.StudentService"/>
+        <property name="fileService" ref="org.uniovi.service.FileService"/>
     </bean>
 
     <bean id="org.uniovi.service.TaskService" class="org.uniovi.service.impl.TaskServiceImpl">
         <property name="nodeService" ref="org.uniovi.service.NodeService"/>
-        <property name="searchService" ref="SearchService"/>
+        <property name="studentService" ref="org.uniovi.service.StudentService"/>
+        <property name="subjectService" ref="org.uniovi.service.SubjectService"/>
     </bean>
 
     <bean id="org.uniovi.service.NodeService" class="org.uniovi.service.impl.NodeServiceImpl">
         <property name="nodeService" ref="NodeService"/>
         <property name="siteService" ref="SiteService"/>
+    </bean>
+
+    <bean id="org.uniovi.service.FileService" class="org.uniovi.service.impl.FileServiceImpl">
+        <property name="nodeService" ref="org.uniovi.service.NodeService"/>
+        <property name="contentService" ref="ContentService"/>
+    </bean>
+
+    <bean id="org.uniovi.service.SearchService" class="org.uniovi.service.impl.SearchServiceImpl">
+        <property name="searchService" ref="SearchService"/>
+        <property name="namespaceService" ref="NamespaceService"/>
+    </bean>
+
+    <bean id="org.uniovi.service.SubjectService" class="org.uniovi.service.impl.SubjectServiceImpl">
+        <property name="nodeService" ref="org.uniovi.service.NodeService"/>
     </bean>
 </beans>

@@ -31,6 +31,12 @@
 
         <type name="uo:student">
             <title>Alumno</title>
+            <parent>cm:folder</parent>
+        </type>
+
+        <type name="uo:studentTask">
+            <title>Tarea</title>
+            <parent>cm:folder</parent>
         </type>
 
         <type name="uo:task">
@@ -38,14 +44,14 @@
             <parent>cm:folder</parent>
         </type>
 
-        <type name="uo:yearFolder">
-            <title>Tarea</title>
+        <type name="uo:subject">
+            <title>Asignatura</title>
             <parent>cm:folder</parent>
         </type>
 
-        <type name="uo:monthFolder">
-            <title>Tarea</title>
-            <parent>cm:folder</parent>
+        <type name="uo:file">
+            <title>Archivo</title>
+            <parent>cm:content</parent>
         </type>
     </types>
 
@@ -66,6 +72,11 @@
                 </property>
 
                 <property name="uo:studentSurname">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+
+                <property name="uo:studentEmail">
                     <type>d:text</type>
                     <mandatory>true</mandatory>
                 </property>
@@ -110,6 +121,11 @@
                     <mandatory>true</mandatory>
                 </property>
 
+                <property name="uo:subjectUUID">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+
                 <property name="uo:description">
                     <type>d:text</type>
                 </property>
@@ -117,14 +133,43 @@
                 <property name="uo:dueDate">
                     <type>d:date</type>
                 </property>
+            </properties>
+        </aspect>
 
+        <aspect name="uo:studentTaskAsp">
+            <properties>
+                <property name="uo:parentTaskUUID">
+                    <type>d:text</type>
+                </property>
                 <property name="uo:score">
                     <type>d:float</type>
                 </property>
             </properties>
         </aspect>
 
-        <aspect name="uo:studentsAsp">
+        <aspect name="uo:subjectAsp">
+            <properties>
+                <property name="uo:schoolYear">
+                    <type>d:text</type>
+                </property>
+                <property name="uo:subjectName">
+                    <type>d:text</type>
+                </property>
+                <property name="uo:enrolled">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>true</multiple>
+                </property>
+
+                <property name="uo:professors">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>true</multiple>
+                </property>
+            </properties>
+        </aspect>
+
+        <aspect name="uo:studentUUIDAsp">
             <properties>
                 <property name="uo:studentUUID">
                     <type>d:text</type>
@@ -132,6 +177,17 @@
                 </property>
             </properties>
         </aspect>
+
+        <aspect name="uo:filesAsp">
+            <properties>
+                <property name="uo:filesUUIDs">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>true</multiple>
+                </property>
+            </properties>
+        </aspect>
+
 
         <aspect name="uo:statusAsp">
             <properties>

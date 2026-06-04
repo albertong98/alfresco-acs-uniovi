@@ -1,11 +1,14 @@
 package org.uniovi.service;
 
+import org.uniovi.dto.StudentTask;
 import org.uniovi.dto.Task;
 
 public interface TaskService {
     String createTask(Task task);
     String updateTask(Task task);
-    Task getTask(String UUID);
+    StudentTask getTask(String UUID);
 
-    String updateScore(Task task);
+    String updateScore(StudentTask studentTask);
+
+    void submitTask(StudentTask studentTask);
 }

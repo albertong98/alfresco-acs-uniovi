@@ -1,8 +1,10 @@
 package org.uniovi.dto;
 
-import java.util.Date;
+import org.springframework.extensions.webscripts.servlet.FormData;
 
-public class  Record {
+import java.util.*;
+
+public class Record {
     public String uuid;
     public String recordNumber;
     public Student student;
@@ -13,7 +15,10 @@ public class  Record {
     public String type;
     public String responsible;
 
-    public Record(String uuid,String recordNumber, Student student, String recordTitle, Date openingDate, String status, String center, String type, String responsible) {
+    public List<File> fileData;
+    public Map<String, FormData.FormField> files;
+
+    public Record(String uuid,String recordNumber, Student student, String recordTitle, Date openingDate, String status, String center, String type, String responsible,List<File> fileData) {
         this.uuid = uuid;
         this.recordNumber = recordNumber;
         this.recordTitle = recordTitle;
@@ -23,6 +28,8 @@ public class  Record {
         this.center = center;
         this.type = type;
         this.responsible = responsible;
+        this.files = new HashMap<>();
+        this.fileData = fileData;
     }
 
     public Record(){}

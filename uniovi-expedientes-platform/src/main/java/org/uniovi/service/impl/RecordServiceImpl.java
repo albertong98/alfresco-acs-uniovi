@@ -1,18 +1,20 @@
 package org.uniovi.service.impl;
 
 import org.alfresco.service.cmr.repository.NodeRef;
-import org.alfresco.service.cmr.search.SearchService;
 import org.uniovi.dto.Record;
 import org.uniovi.model.UnioviContentModel;
+import org.uniovi.service.FileService;
 import org.uniovi.service.NodeService;
 import org.uniovi.service.RecordService;
-
+import org.uniovi.service.StudentService;
 public class RecordServiceImpl implements RecordService {
     private NodeService nodeService;
-    private SearchService searchService;
+    private StudentService studentService;
+
+    private FileService fileService;
     @Override
     public String createRecord(Record record) {
-        return saveRecord(record,nodeService.createNodeRef(UnioviContentModel.TYPE_RECORD,UnioviContentModel.recordsSiteName));
+        return saveRecord(record,nodeService.createNodeRefInYearFolder(UnioviContentModel.TYPE_RECORD,UnioviContentModel.recordsSiteName));
     }
 
     @Override
@@ -22,6 +24,8 @@ public class RecordServiceImpl implements RecordService {
 
     private String saveRecord(Record record,NodeRef nodeRef){
         setPropertiesFromDto(record,nodeRef);
+        studentService.setStudent(record.student,nodeRef);
+        fileService.insertFilesIntoNode(nodeRef,record.fileData,record.files);
         return nodeRef.getId();
     }
     @Override
@@ -50,11 +54,15 @@ public class RecordServiceImpl implements RecordService {
         record.responsible = nodeService.getStringProperty(node,UnioviContentModel.PROP_RESPONSIBLE);
         return record;
     }
+
     //SETTERS
     public void setNodeService(NodeService nodeService) {
         this.nodeService = nodeService;
     }
-    public void setSearchService(SearchService searchService) {
-        this.searchService = searchService;
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
+    public void setFileService(FileService fileService) {
+        this.fileService = fileService;
     }
 }
