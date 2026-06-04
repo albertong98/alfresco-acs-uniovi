@@ -1,7 +1,7 @@
 <webscript>
-    <shortname>Create a task</shortname>
-    <description>POST - Create a task</description>
-    <url>/uniovi/task</url>
+    <shortname>Get a studentTask</shortname>
+    <description>GET - Get a studentTask</description>
+    <url>/uniovi/studentTask/{studentTaskUUID}</url>
     <format default="json"/>
     <authentication>user</authentication>
     <transaction>required</transaction>

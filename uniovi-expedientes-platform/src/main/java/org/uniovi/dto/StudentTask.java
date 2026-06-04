@@ -9,13 +9,15 @@ public class StudentTask{
     public String uuid;
     public String parentTaskUUID;
     public String studentUUID;
-    public Float score;
+    public Double score;
     public String taskStatus;
+
+    public String observations;
 
     public List<File> submissionData;
     public Map<String, FormData.FormField> submissions;
 
-    public StudentTask(String parentTaskUUID,String uuid,String studentUUID, Float score, String taskStatus) {
+    public StudentTask(String parentTaskUUID,String uuid,String studentUUID, Double score, String taskStatus) {
         this.parentTaskUUID = parentTaskUUID;
         this.uuid = uuid;
         this.studentUUID = studentUUID;

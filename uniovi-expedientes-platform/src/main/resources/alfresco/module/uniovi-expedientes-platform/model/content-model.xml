@@ -142,7 +142,7 @@
                     <type>d:text</type>
                 </property>
                 <property name="uo:score">
-                    <type>d:float</type>
+                    <type>d:double</type>
                 </property>
             </properties>
         </aspect>
@@ -192,6 +192,9 @@
         <aspect name="uo:statusAsp">
             <properties>
                 <property name="uo:status">
+                    <type>d:text</type>
+                </property>
+                <property name="uo:observations">
                     <type>d:text</type>
                 </property>
             </properties>

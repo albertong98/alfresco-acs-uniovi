@@ -3,8 +3,6 @@ package org.uniovi.service;
 import org.alfresco.service.cmr.repository.NodeRef;
 import org.alfresco.service.namespace.QName;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -22,5 +20,6 @@ public interface NodeService {
     String getStringProperty(NodeRef nodeRef, QName property);
     Date getDateProperty(NodeRef nodeRef, QName property);
     HashSet<String> getCollectionProperty(NodeRef nodeRef, QName property);
+    Number getNumberProperty(NodeRef nodeRef, QName property);
 
 }

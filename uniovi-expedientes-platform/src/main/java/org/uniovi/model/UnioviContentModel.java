@@ -47,6 +47,7 @@ public class UnioviContentModel {
 
     public static final QName ASPECT_STATUS = QName.createQName(unioviNamespaceUri,"statusAsp");
     public static final QName PROP_STATUS = QName.createQName(unioviNamespaceUri,"status");
+    public static final QName PROP_OBSERVATIONS = QName.createQName(unioviNamespaceUri,"status");
 
     public static final QName ASPECT_SUBJECT = QName.createQName(unioviNamespaceUri,"subjectAsp");
     public static final QName PROP_SCHOOL_YEAR = QName.createQName(unioviNamespaceUri,"schoolYear");
@@ -64,5 +65,12 @@ public class UnioviContentModel {
 
 
     public static final String taskPendingStatus ="01";
+    public static final String taskSubmittedStatus ="02";
+    public static final String taskRevokedStatus ="03";
+    public static final String taskPassedStatus ="04";
+    public static final String taskFailedStatus ="05";
 
+    public static final double passingScore = 5.0;
+    public static final double minScore = 0.0;
+    public static final double maxScore = 10.0;
 }

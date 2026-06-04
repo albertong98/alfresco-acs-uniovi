@@ -52,6 +52,9 @@
 	<bean id="webscript.org.uniovi.tasks.task.get" class="org.uniovi.webscript.task.GetTask" parent="webscript">
 		<property name="taskService" ref="org.uniovi.service.TaskService"/>
 	</bean>
+	<bean id="webscript.org.uniovi.tasks.studenttask.get" class="org.uniovi.webscript.task.GetStudentTask" parent="webscript">
+		<property name="taskService" ref="org.uniovi.service.TaskService"/>
+	</bean>
 	<bean id="webscript.org.uniovi.tasks.score.put" class="org.uniovi.webscript.task.UpdateScore" parent="webscript">
 		<property name="taskService" ref="org.uniovi.service.TaskService"/>
 	</bean>

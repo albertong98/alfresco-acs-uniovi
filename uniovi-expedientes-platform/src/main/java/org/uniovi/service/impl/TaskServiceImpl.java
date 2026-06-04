@@ -1,6 +1,7 @@
 package org.uniovi.service.impl;
 
 import org.alfresco.service.cmr.repository.NodeRef;
+import org.apache.poi.ss.formula.functions.T;
 import org.uniovi.dto.Student;
 import org.uniovi.dto.StudentTask;
 import org.uniovi.dto.Subject;
@@ -36,22 +37,37 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public StudentTask getTask(String UUID) {
-        return null;
+    public Task getTask(String UUID) {
+        return getTaskProperties(nodeService.getNodeRef(UUID));
+    }
+
+    @Override
+    public StudentTask getStudentTask(String UUID) {
+        return getStudentTaskProperties(nodeService.getNodeRef(UUID));
     }
 
     @Override
     public String updateScore(StudentTask studentTask) {
         //TODO configurable en datalist?
-        if(studentTask.score < 0.0 || studentTask.score > 10.0)
-            throw new IllegalArgumentException("Task score must be between 0 and 10");
-        nodeService.checkAndSetNumberProperty(UnioviContentModel.PROP_STUDENT_TASK_SCORE, studentTask.score,nodeService.getNodeRef(studentTask.uuid),true);
+        if(studentTask.score < UnioviContentModel.minScore || studentTask.score > UnioviContentModel.maxScore)
+            throw new IllegalArgumentException(String.format("Task score must be between %f and %f",UnioviContentModel.minScore,UnioviContentModel.maxScore));
+
+        NodeRef nodeRef = nodeService.getNodeRef(studentTask.uuid);
+
+        String status = studentTask.score <= UnioviContentModel.passingScore ? UnioviContentModel.taskPassedStatus : UnioviContentModel.taskFailedStatus;
+
+        nodeService.checkAndSetNumberProperty(UnioviContentModel.PROP_STUDENT_TASK_SCORE, studentTask.score,nodeRef,true);
+        nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_STATUS, status ,nodeRef,true);
+        nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_OBSERVATIONS, studentTask.observations,nodeRef,false);
+
         return studentTask.uuid;
     }
 
     @Override
     public void submitTask(StudentTask studentTask) {
-
+        NodeRef nodeRef = nodeService.getNodeRef(studentTask.uuid);
+        fileService.insertFilesIntoNode(nodeRef,studentTask.submissionData,studentTask.submissions);
+        nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_STATUS,UnioviContentModel.taskSubmittedStatus,nodeRef,true);
     }
 
     private StudentTask createStudentTask(Student student, Task task){
@@ -83,6 +99,25 @@ public class TaskServiceImpl implements TaskService {
         nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_TASK_DESCRIPTION, task.description,node,true);
         nodeService.checkAndSetDateProperty(UnioviContentModel.PROP_TASK_DUE_DATE, task.dueDate,node,true);
         nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_SUBJECT_UUID, task.subjectUUID,node,true);
+    }
+
+    private Task getTaskProperties(NodeRef node){
+        Task task = new Task();
+        task.title = nodeService.getStringProperty(node,UnioviContentModel.PROP_TASK_TITLE);
+        task.description = nodeService.getStringProperty(node,UnioviContentModel.PROP_TASK_DESCRIPTION);
+        task.dueDate = nodeService.getDateProperty(node,UnioviContentModel.PROP_TASK_DUE_DATE);
+        task.subjectUUID = nodeService.getStringProperty(node,UnioviContentModel.PROP_SUBJECT_UUID);
+        return task;
+    }
+
+    private StudentTask getStudentTaskProperties(NodeRef node){
+        StudentTask studentTask = new StudentTask();
+        studentTask.taskStatus = nodeService.getStringProperty(node,UnioviContentModel.PROP_STATUS);
+        studentTask.studentUUID = nodeService.getStringProperty(node,UnioviContentModel.PROP_STUDENT_UUID);
+        studentTask.parentTaskUUID = nodeService.getStringProperty(node,UnioviContentModel.PROP_STUDENT_TASK_PARENT_UUID);
+        studentTask.observations = nodeService.getStringProperty(node,UnioviContentModel.PROP_OBSERVATIONS);
+        studentTask.score = (Double) nodeService.getNumberProperty(node,UnioviContentModel.PROP_STUDENT_TASK_SCORE);
+        return studentTask;
     }
 
     private String saveTask(Task task, NodeRef nodeRef){

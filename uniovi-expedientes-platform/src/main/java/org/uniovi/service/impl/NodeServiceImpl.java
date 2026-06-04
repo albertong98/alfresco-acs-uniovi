@@ -106,6 +106,11 @@ public class NodeServiceImpl implements NodeService {
         return getProperty(nodeRef,property, HashSet.class);
     }
 
+    @Override
+    public Number getNumberProperty(NodeRef nodeRef, QName property) {
+        return getProperty(nodeRef,property,Number.class);
+    }
+
     //SETTERS
     public void setNodeService(org.alfresco.service.cmr.repository.NodeService nodeService) {
         this.nodeService = nodeService;
