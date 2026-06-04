@@ -35,6 +35,7 @@
         <property name="nodeService" ref="org.uniovi.service.NodeService"/>
         <property name="studentService" ref="org.uniovi.service.StudentService"/>
         <property name="subjectService" ref="org.uniovi.service.SubjectService"/>
+        <property name="fileService" ref="org.uniovi.service.FileService"/>
     </bean>
 
     <bean id="org.uniovi.service.NodeService" class="org.uniovi.service.impl.NodeServiceImpl">
@@ -54,5 +55,6 @@
 
     <bean id="org.uniovi.service.SubjectService" class="org.uniovi.service.impl.SubjectServiceImpl">
         <property name="nodeService" ref="org.uniovi.service.NodeService"/>
+        <property name="fileService" ref="org.uniovi.service.FileService"/>
     </bean>
 </beans>

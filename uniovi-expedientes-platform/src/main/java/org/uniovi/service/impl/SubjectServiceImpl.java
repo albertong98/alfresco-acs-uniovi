@@ -3,12 +3,13 @@ package org.uniovi.service.impl;
 import org.alfresco.service.cmr.repository.NodeRef;
 import org.uniovi.dto.Subject;
 import org.uniovi.model.UnioviContentModel;
+import org.uniovi.service.FileService;
 import org.uniovi.service.NodeService;
 import org.uniovi.service.SubjectService;
 
 public class SubjectServiceImpl implements SubjectService {
     private NodeService nodeService;
-
+    private FileService fileService;
     @Override
     public String createSubject(Subject subject) {
         return saveSubject(subject,nodeService.createNodeRefInYearFolder(UnioviContentModel.TYPE_SUBJECT, UnioviContentModel.subjectSiteName));
@@ -26,6 +27,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     private String saveSubject(Subject subject, NodeRef nodeRef){
         setPropertiesFromDto(subject,nodeRef);
+        fileService.insertFilesIntoNode(nodeRef,subject.fileData,subject.files);
         return nodeRef.getId();
     }
 
@@ -48,5 +50,9 @@ public class SubjectServiceImpl implements SubjectService {
     //SETTERS
     public void setNodeService(NodeService nodeService) {
         this.nodeService = nodeService;
+    }
+
+    public void setFileService(FileService fileService) {
+        this.fileService = fileService;
     }
 }

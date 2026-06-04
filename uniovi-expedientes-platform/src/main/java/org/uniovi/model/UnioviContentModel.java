@@ -54,7 +54,8 @@ public class UnioviContentModel {
     public static final QName PROP_ENROLLED = QName.createQName(unioviNamespaceUri,"enrolled");
     public static final QName PROP_PROFESSORS = QName.createQName(unioviNamespaceUri,"professors");
 
-
+    public static final QName ASPECT_FILES = QName.createQName(unioviNamespaceUri,"filesAsp");
+    public static final QName PROP_FILES = QName.createQName(unioviNamespaceUri,"filesUUIDs");
     /**CONSTANTS**/
     public static final String recordsSiteName ="records";
     public static final String studentsSiteName ="students";

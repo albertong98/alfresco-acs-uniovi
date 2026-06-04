@@ -13,6 +13,7 @@ import org.uniovi.service.NodeService;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ public class FileServiceImpl implements FileService {
     private ContentService contentService;
     @Override
     public void insertFilesIntoNode(NodeRef nodeRef, List<File> fileData, Map<String, FormData.FormField> files) {
+        HashSet<String> fileUUIDs = new HashSet<>();
         for(File file: fileData){
             FormData.FormField field = files.get(file.fileId);
 
@@ -35,7 +37,10 @@ public class FileServiceImpl implements FileService {
             }catch (IOException e) {
                 throw new AlfrescoRuntimeException("ERROR trying to process file with ID "+file.fileId,e);
             }
+
+            fileUUIDs.add(fileRef.getId());
         }
+        nodeService.checkAndSetCollectionProperty(UnioviContentModel.PROP_FILES,fileUUIDs,nodeRef,fileData.size() > 0);
     }
 
     //SETTERS

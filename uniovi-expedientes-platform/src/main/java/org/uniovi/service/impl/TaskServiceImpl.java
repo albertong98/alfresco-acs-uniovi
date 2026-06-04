@@ -6,10 +6,7 @@ import org.uniovi.dto.StudentTask;
 import org.uniovi.dto.Subject;
 import org.uniovi.dto.Task;
 import org.uniovi.model.UnioviContentModel;
-import org.uniovi.service.NodeService;
-import org.uniovi.service.StudentService;
-import org.uniovi.service.SubjectService;
-import org.uniovi.service.TaskService;
+import org.uniovi.service.*;
 
 import java.util.List;
 
@@ -17,6 +14,7 @@ public class TaskServiceImpl implements TaskService {
     private NodeService nodeService;
     private SubjectService subjectService;
     private StudentService studentService;
+    private FileService fileService;
 
     @Override
     public String createTask(Task task) {
@@ -89,6 +87,7 @@ public class TaskServiceImpl implements TaskService {
 
     private String saveTask(Task task, NodeRef nodeRef){
         setPropertiesFromDto(task,nodeRef);
+        fileService.insertFilesIntoNode(nodeRef,task.fileData,task.files);
         return nodeRef.getId();
     }
 
@@ -103,5 +102,9 @@ public class TaskServiceImpl implements TaskService {
 
     public void setSubjectService(SubjectService subjectService) {
         this.subjectService = subjectService;
+    }
+
+    public void setFileService(FileService fileService) {
+        this.fileService = fileService;
     }
 }
