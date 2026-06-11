@@ -33,8 +33,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void setStudent(Student student, NodeRef nodeRef) {
-        String uuid = StringUtils.isBlank(student.uuid) ? createStudent(student) : student.uuid;
-        nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_STUDENT_UUID,uuid ,nodeRef,true);
+        NodeRef studentRef = findStudentFolderByUO(student.uo);
+        if(studentRef == null)
+            throw new IllegalArgumentException("No student with uo"+student.uo);
+        nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_STUDENT_UUID,studentRef.getId() ,nodeRef,true);
     }
 
     private void setPropertiesFromDto(Student student, NodeRef node) {
