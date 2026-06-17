@@ -1,7 +1,6 @@
 package org.uniovi.service.impl;
 
 import org.alfresco.service.cmr.repository.NodeRef;
-import org.apache.tika.utils.StringUtils;
 import org.uniovi.dto.Student;
 import org.uniovi.model.UnioviContentModel;
 import org.uniovi.service.NodeService;

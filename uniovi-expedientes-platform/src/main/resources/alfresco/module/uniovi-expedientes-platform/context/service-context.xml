@@ -23,6 +23,7 @@
 
     <bean id="org.uniovi.service.StudentService" class="org.uniovi.service.impl.StudentServiceImpl">
         <property name="nodeService" ref="org.uniovi.service.NodeService"/>
+        <property name="searchService" ref="org.uniovi.service.SearchService"/>
     </bean>
 
     <bean id="org.uniovi.service.RecordService" class="org.uniovi.service.impl.RecordServiceImpl">

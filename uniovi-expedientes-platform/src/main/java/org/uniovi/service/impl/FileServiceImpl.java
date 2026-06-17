@@ -5,6 +5,7 @@ import org.alfresco.model.ContentModel;
 import org.alfresco.service.cmr.repository.ContentService;
 import org.alfresco.service.cmr.repository.ContentWriter;
 import org.alfresco.service.cmr.repository.NodeRef;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.extensions.webscripts.servlet.FormData;
 import org.uniovi.dto.File;
 import org.uniovi.model.UnioviContentModel;
@@ -22,6 +23,9 @@ public class FileServiceImpl implements FileService {
     private ContentService contentService;
     @Override
     public void insertFilesIntoNode(NodeRef nodeRef, List<File> fileData, Map<String, FormData.FormField> files) {
+        if(CollectionUtils.isEmpty(fileData) || files == null || files.isEmpty())
+            return;
+
         HashSet<String> fileUUIDs = new HashSet<>();
         for(File file: fileData){
             FormData.FormField field = files.get(file.fileId);

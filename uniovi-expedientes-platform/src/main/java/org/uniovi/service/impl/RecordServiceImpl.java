@@ -1,6 +1,7 @@
 package org.uniovi.service.impl;
 
 import org.alfresco.service.cmr.repository.NodeRef;
+import org.apache.commons.collections.CollectionUtils;
 import org.uniovi.dto.Record;
 import org.uniovi.model.UnioviContentModel;
 import org.uniovi.service.FileService;
