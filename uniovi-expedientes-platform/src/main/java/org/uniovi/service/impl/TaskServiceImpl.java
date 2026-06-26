@@ -9,6 +9,7 @@ import org.uniovi.dto.Task;
 import org.uniovi.model.UnioviContentModel;
 import org.uniovi.service.*;
 
+import java.util.Date;
 import java.util.List;
 
 public class TaskServiceImpl implements TaskService {
@@ -17,10 +18,13 @@ public class TaskServiceImpl implements TaskService {
     private StudentService studentService;
     private FileService fileService;
 
+    private SearchService searchService;
+
     @Override
     public String createTask(Task task) {
         Subject subject = subjectService.getSubject(task.subjectUUID);
 
+        task.subjectName = subject.name;
         task.uuid = saveTask(task,nodeService.createNodeRefInYearFolder(UnioviContentModel.TYPE_TASK,UnioviContentModel.tasksSiteName));
 
         List<Student> studentList = subject.enrolledStudentsUUID.stream().map(uuid -> studentService.getStudent(uuid)).toList();
@@ -64,10 +68,23 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void submitTask(StudentTask studentTask) {
+    public String submitTask(StudentTask studentTask) {
         NodeRef nodeRef = nodeService.getNodeRef(studentTask.uuid);
         fileService.insertFilesIntoNode(nodeRef,studentTask.submissionData,studentTask.submissions);
         nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_STATUS,UnioviContentModel.taskSubmittedStatus,nodeRef,true);
+        return nodeRef.getId();
+    }
+
+    @Override
+    public void checkAndUpdatStudentTasks() {
+        List<NodeRef> expiredTasks = searchService.findNodesByPropertyAndType(UnioviContentModel.TYPE_STUDENT_TASK,UnioviContentModel.PROP_STUDENT_TASK_DUE_DATE,"[MIN TO NOW/DAY]");
+        Date today = new Date();
+        for(NodeRef task : expiredTasks){
+            Date dueDate = nodeService.getDateProperty(task,UnioviContentModel.PROP_STUDENT_TASK_DUE_DATE);
+            if(today.after(dueDate)){
+                nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_STATUS,UnioviContentModel.taskNotSubmittedStatus,task,true);
+            }
+        }
     }
 
     private StudentTask createStudentTask(Student student, Task task){
@@ -81,17 +98,20 @@ public class TaskServiceImpl implements TaskService {
         studentTask.parentTaskUUID = task.uuid;
         studentTask.studentUUID = student.uuid;
         studentTask.taskStatus = UnioviContentModel.taskPendingStatus;
+        studentTask.dueDate = task.dueDate;
+        studentTask.title = task.title;
 
         setPropertiesFromDto(studentTask,nodeRef);
 
         return studentTask;
     }
 
-
     private void setPropertiesFromDto(StudentTask studentTask, NodeRef node){
         nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_STUDENT_UUID, studentTask.studentUUID,node,true);
         nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_STUDENT_TASK_PARENT_UUID, studentTask.parentTaskUUID,node,true);
         nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_STATUS, studentTask.taskStatus,node,true);
+        nodeService.checkAndSetDateProperty(UnioviContentModel.PROP_STUDENT_TASK_DUE_DATE, studentTask.dueDate,node,true);
+        nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_STUDENT_TASK_TITLE, studentTask.title,node,true);
     }
 
     private void setPropertiesFromDto(Task task, NodeRef node){
@@ -99,6 +119,7 @@ public class TaskServiceImpl implements TaskService {
         nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_TASK_DESCRIPTION, task.description,node,true);
         nodeService.checkAndSetDateProperty(UnioviContentModel.PROP_TASK_DUE_DATE, task.dueDate,node,true);
         nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_SUBJECT_UUID, task.subjectUUID,node,true);
+        nodeService.checkAndSetStringProperty(UnioviContentModel.PROP_TASK_SUBJECT_NAME, task.subjectName,node,true);
     }
 
     private Task getTaskProperties(NodeRef node){

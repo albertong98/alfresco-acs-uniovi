@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Submit a studentTask</shortname>
+    <description>PUT - Submit a studentTask</description>
+    <url>/uniovi/submit/{studentTaskUUID}</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <family>Uniovi</family>
+</webscript>

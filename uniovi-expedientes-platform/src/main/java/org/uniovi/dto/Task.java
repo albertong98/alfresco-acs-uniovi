@@ -9,6 +9,7 @@ import java.util.Map;
 public class Task {
     public String uuid;
     public String subjectUUID;
+    public String subjectName;
     public String title;
     public String description;
 

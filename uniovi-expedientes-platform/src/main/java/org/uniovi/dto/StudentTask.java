@@ -2,6 +2,7 @@ package org.uniovi.dto;
 
 import org.springframework.extensions.webscripts.servlet.FormData;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,8 @@ public class StudentTask{
     public String taskStatus;
 
     public String observations;
+    public Date dueDate;
+    public String title;
 
     public List<File> submissionData;
     public Map<String, FormData.FormField> submissions;

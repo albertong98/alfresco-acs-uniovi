@@ -30,7 +30,7 @@ public abstract class GetWebScript<T> extends AbstractWebScript {
         }catch (IllegalArgumentException | JSONException e){
             throw new WebScriptException(HttpStatus.SC_BAD_REQUEST,e.getMessage());
         }catch(AlfrescoRuntimeException e){
-            throw new WebScriptException(HttpStatus.SC_INTERNAL_SERVER_ERROR,"Internal server Error");
+            throw new WebScriptException(HttpStatus.SC_INTERNAL_SERVER_ERROR,"Internal server Error",e);
         }
     }
 

@@ -7,6 +7,7 @@ import org.alfresco.service.cmr.search.SearchParameters;
 import org.alfresco.service.namespace.NamespaceService;
 import org.alfresco.service.namespace.QName;
 import org.alfresco.util.SearchLanguageConversion;
+import org.uniovi.model.UnioviContentModel;
 import org.uniovi.service.SearchService;
 
 import java.util.ArrayList;
@@ -56,6 +57,21 @@ public class SearchServiceImpl implements SearchService {
         );
 
         return sortDefinition;
+    }
+
+    public List<NodeRef> getAllExpiredStudentTasks(){
+        /** SearchParameters searchParameters = createSearchParameters();
+        StringBuilder query = new StringBuilder();
+        query.append("+TYPE:").append(SearchLanguageConversion.escapeLuceneQuery(UnioviContentModel.TYPE_STUDENT_TASK.toPrefixString(namespaceService)));
+
+        query.append(" AND @")
+                .append(SearchLanguageConversion.escapeLuceneQuery(UnioviContentModel.PROP_STUDENT_TASK_DUE_DATE.toPrefixString(namespaceService)))
+                .append(":[MIN TO NOW/DAY]");
+        searchParameters.setQuery(query.toString());
+        ResultSet resultSet = searchService.query(searchParameters);
+
+        return resultSet.getNumberFound() > 0 ? resultSet.getNodeRefs() : new ArrayList<>();*/
+        return findNodesByPropertyAndType(UnioviContentModel.TYPE_STUDENT_TASK,UnioviContentModel.PROP_STUDENT_TASK_DUE_DATE,"[MIN TO NOW/DAY]");
     }
 
     public void setNamespaceService(NamespaceService namespaceService) {

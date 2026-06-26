@@ -57,5 +57,6 @@
     <bean id="org.uniovi.service.SubjectService" class="org.uniovi.service.impl.SubjectServiceImpl">
         <property name="nodeService" ref="org.uniovi.service.NodeService"/>
         <property name="fileService" ref="org.uniovi.service.FileService"/>
+        <property name="studentService" ref="org.uniovi.service.StudentService"/>
     </bean>
 </beans>

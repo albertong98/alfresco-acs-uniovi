@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Enroll a subject</shortname>
+    <description>PUT - Enroll a subject</description>
+    <url>/uniovi/enroll</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <family>Uniovi</family>
+</webscript>

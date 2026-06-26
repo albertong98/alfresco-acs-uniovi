@@ -28,10 +28,13 @@ public class UnioviContentModel {
     public static final QName PROP_TASK_DESCRIPTION = QName.createQName(unioviNamespaceUri,"description");
     public static final QName PROP_TASK_DUE_DATE = QName.createQName(unioviNamespaceUri,"dueDate");
     public static final QName PROP_SUBJECT_UUID = QName.createQName(unioviNamespaceUri,"subjectUUID");
+    public static final QName PROP_TASK_SUBJECT_NAME = QName.createQName(unioviNamespaceUri,"taskSubjectName");
 
     public static final QName ASPECT_STUDENT_TASK = QName.createQName(unioviNamespaceUri,"studentTaskAsp");
     public static final QName PROP_STUDENT_TASK_SCORE = QName.createQName(unioviNamespaceUri,"score");
     public static final QName PROP_STUDENT_TASK_PARENT_UUID = QName.createQName(unioviNamespaceUri,"parentTaskUUID");
+    public static final QName PROP_STUDENT_TASK_DUE_DATE = QName.createQName(unioviNamespaceUri,"studentTaskDueDate");
+    public static final QName PROP_STUDENT_TASK_TITLE = QName.createQName(unioviNamespaceUri,"studentTaskTitle");
 
     public static final QName ASPECT_STUDENT = QName.createQName(unioviNamespaceUri,"studentAsp");
     public static final QName PROP_STUDENT_ID = QName.createQName(unioviNamespaceUri,"studentId");
@@ -53,7 +56,6 @@ public class UnioviContentModel {
     public static final QName PROP_SCHOOL_YEAR = QName.createQName(unioviNamespaceUri,"schoolYear");
     public static final QName PROP_SUBJECT_NAME = QName.createQName(unioviNamespaceUri,"subjectName");
     public static final QName PROP_ENROLLED = QName.createQName(unioviNamespaceUri,"enrolled");
-    public static final QName PROP_PROFESSORS = QName.createQName(unioviNamespaceUri,"professors");
 
     public static final QName ASPECT_FILES = QName.createQName(unioviNamespaceUri,"filesAsp");
     public static final QName PROP_FILES = QName.createQName(unioviNamespaceUri,"filesUUIDs");
@@ -64,11 +66,11 @@ public class UnioviContentModel {
     public static final String subjectSiteName ="subjects";
 
 
-    public static final String taskPendingStatus ="01";
-    public static final String taskSubmittedStatus ="02";
-    public static final String taskRevokedStatus ="03";
-    public static final String taskPassedStatus ="04";
-    public static final String taskFailedStatus ="05";
+    public static final String taskPendingStatus ="Pendiente";
+    public static final String taskSubmittedStatus ="Entregado";
+    public static final String taskNotSubmittedStatus ="No entregado";
+    public static final String taskPassedStatus ="Aprobado";
+    public static final String taskFailedStatus ="Suspenso";
 
     public static final double passingScore = 5.0;
     public static final double minScore = 0.0;

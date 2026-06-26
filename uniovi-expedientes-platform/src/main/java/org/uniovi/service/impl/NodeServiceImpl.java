@@ -2,6 +2,7 @@ package org.uniovi.service.impl;
 
 import org.alfresco.model.ContentModel;
 import org.alfresco.service.cmr.repository.NodeRef;
+import org.alfresco.service.cmr.repository.StoreRef;
 import org.alfresco.service.cmr.site.SiteService;
 import org.alfresco.service.namespace.QName;
 import org.apache.cxf.common.util.CollectionUtils;
@@ -70,7 +71,7 @@ public class NodeServiceImpl implements NodeService {
         if(StringUtils.isBlank(UUID))
             throw new IllegalArgumentException("Parameter UUID is required");
 
-        NodeRef nodeRef = new NodeRef(UUID);
+        NodeRef nodeRef = new NodeRef(StoreRef.STORE_REF_WORKSPACE_SPACESSTORE,UUID);
 
         if(nodeRef == null)
             throw new IllegalArgumentException(String.format("NodeRef with UUID %s does not exist",UUID));
@@ -85,7 +86,9 @@ public class NodeServiceImpl implements NodeService {
 
     private <T extends Serializable> T getProperty(NodeRef nodeRef, QName property, Class<T> clazz) {
         Serializable propertyValue = nodeService.getProperty(nodeRef,property);
-        if(clazz.isInstance(propertyValue))
+        if(propertyValue == null)
+            return null;
+        else if(clazz.isInstance(propertyValue))
             return clazz.cast(propertyValue);
         else
             throw new IllegalArgumentException(String.format("Property %s is not a %s", propertyValue, clazz));
@@ -103,7 +106,8 @@ public class NodeServiceImpl implements NodeService {
 
     @Override
     public HashSet<String> getCollectionProperty(NodeRef nodeRef, QName property) {
-        return getProperty(nodeRef,property, HashSet.class);
+        HashSet<String> collection = new HashSet<>(getProperty(nodeRef,property, ArrayList.class));
+        return collection == null ? new HashSet<>() : collection;
     }
 
     @Override

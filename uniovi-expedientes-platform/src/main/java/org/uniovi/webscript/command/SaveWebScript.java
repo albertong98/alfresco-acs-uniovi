@@ -42,9 +42,9 @@ public abstract class SaveWebScript extends AbstractWebScript {
             webScriptResponse.setContentType(MimetypeMap.MIMETYPE_TEXT_PLAIN);
             webScriptResponse.getWriter().write(ID);
         } catch (IllegalArgumentException | JSONException e){
-            throw new WebScriptException(HttpStatus.SC_BAD_REQUEST,e.getMessage());
+            throw new WebScriptException(HttpStatus.SC_BAD_REQUEST,e.getMessage(),e);
         }catch(AlfrescoRuntimeException e){
-            throw new WebScriptException(HttpStatus.SC_INTERNAL_SERVER_ERROR,"Internal server Error");
+            throw new WebScriptException(HttpStatus.SC_INTERNAL_SERVER_ERROR,"Internal server Error",e);
         }
     }
 

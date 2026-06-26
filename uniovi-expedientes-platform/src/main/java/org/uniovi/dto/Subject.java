@@ -11,7 +11,6 @@ public class Subject {
     public String schoolYear;
     public String name;
     public HashSet<String> enrolledStudentsUUID;
-    public HashSet<String> professors;
 
     public List<File> fileData;
     public Map<String, FormData.FormField> files;

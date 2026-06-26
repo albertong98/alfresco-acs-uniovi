@@ -74,6 +74,9 @@
                 <property name="uo:studentSurname">
                     <type>d:text</type>
                     <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <tokenised>true</tokenised>
+                    </index>
                 </property>
 
                 <property name="uo:studentEmail">
@@ -126,6 +129,11 @@
                     <mandatory>true</mandatory>
                 </property>
 
+                <property name="uo:taskSubjectName">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+
                 <property name="uo:description">
                     <type>d:text</type>
                 </property>
@@ -144,6 +152,12 @@
                 <property name="uo:score">
                     <type>d:double</type>
                 </property>
+                <property name="uo:studentTaskDueDate">
+                    <type>d:date</type>
+                </property>
+                <property name="uo:studentTaskTitle">
+                    <type>d:text</type>
+                </property>
             </properties>
         </aspect>
 
@@ -156,12 +170,6 @@
                     <type>d:text</type>
                 </property>
                 <property name="uo:enrolled">
-                    <type>d:text</type>
-                    <mandatory>true</mandatory>
-                    <multiple>true</multiple>
-                </property>
-
-                <property name="uo:professors">
                     <type>d:text</type>
                     <mandatory>true</mandatory>
                     <multiple>true</multiple>

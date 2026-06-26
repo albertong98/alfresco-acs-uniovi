@@ -11,5 +11,7 @@ public interface TaskService {
 
     String updateScore(StudentTask studentTask);
 
-    void submitTask(StudentTask studentTask);
+    String submitTask(StudentTask studentTask);
+
+    void checkAndUpdatStudentTasks();
 }
