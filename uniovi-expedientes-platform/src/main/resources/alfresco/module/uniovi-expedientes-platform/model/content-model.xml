@@ -53,6 +53,14 @@
             <title>Archivo</title>
             <parent>cm:content</parent>
         </type>
+        <type name="uo:degree">
+            <title>Grado</title>
+            <parent>cm:folder</parent>
+        </type>
+        <type name="uo:enrollment">
+            <title>Matrícula</title>
+            <parent>cm:folder</parent>
+        </type>
     </types>
 
     <aspects>
@@ -123,12 +131,10 @@
                     <type>d:text</type>
                     <mandatory>true</mandatory>
                 </property>
-
                 <property name="uo:subjectUUID">
                     <type>d:text</type>
                     <mandatory>true</mandatory>
                 </property>
-
                 <property name="uo:taskSubjectName">
                     <type>d:text</type>
                     <mandatory>true</mandatory>
@@ -174,6 +180,10 @@
                     <mandatory>true</mandatory>
                     <multiple>true</multiple>
                 </property>
+
+                <property name="uo:degreeUUID">
+                    <type>d:text</type>
+                </property>
             </properties>
         </aspect>
 
@@ -203,6 +213,34 @@
                     <type>d:text</type>
                 </property>
                 <property name="uo:observations">
+                    <type>d:text</type>
+                </property>
+            </properties>
+        </aspect>
+
+        <aspect name="uo:degreeAsp">
+            <properties>
+                <property name="uo:degreeName">
+                    <type>d:text</type>
+                </property>
+                <property name="uo:degreeCenter">
+                    <type>d:text</type>
+                </property>
+            </properties>
+        </aspect>
+        
+        <aspect name="uo:enrollmentAsp">
+            <properties>
+                <property name="uo:schoolYear">
+                    <type>d:text</type>
+                </property>
+                <property name="uo:enrolledStudentUUID">
+                    <type>d:text</type>
+                </property>
+                <property name="uo:enrolledSubjectsUUIDs">
+                    <type>d:text</type>
+                </property>
+                <property name="uo:enrolledDegreeUUID">
                     <type>d:text</type>
                 </property>
             </properties>

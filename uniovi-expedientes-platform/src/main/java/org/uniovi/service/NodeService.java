@@ -16,6 +16,7 @@ public interface NodeService {
     NodeRef getNodeRef(String UUID);
     NodeRef createNodeRef(QName type, NodeRef parent);
 
+    void deleteNode(NodeRef nodeRef);
 
     String getStringProperty(NodeRef nodeRef, QName property);
     Date getDateProperty(NodeRef nodeRef, QName property);

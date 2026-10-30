@@ -84,6 +84,11 @@ public class NodeServiceImpl implements NodeService {
         return nodeService.createNode(parent, ContentModel.ASSOC_CONTAINS,ContentModel.ASSOC_CONTAINS,type).getChildRef();
     }
 
+    @Override
+    public void deleteNode(NodeRef nodeRef) {
+        this.nodeService.deleteNode(nodeRef);
+    }
+
     private <T extends Serializable> T getProperty(NodeRef nodeRef, QName property, Class<T> clazz) {
         Serializable propertyValue = nodeService.getProperty(nodeRef,property);
         if(propertyValue == null)

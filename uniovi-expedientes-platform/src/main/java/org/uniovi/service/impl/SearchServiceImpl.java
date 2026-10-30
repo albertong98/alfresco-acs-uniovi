@@ -59,6 +59,7 @@ public class SearchServiceImpl implements SearchService {
         return sortDefinition;
     }
 
+    @Override
     public List<NodeRef> getAllExpiredStudentTasks(){
         /** SearchParameters searchParameters = createSearchParameters();
         StringBuilder query = new StringBuilder();
@@ -73,6 +74,12 @@ public class SearchServiceImpl implements SearchService {
         return resultSet.getNumberFound() > 0 ? resultSet.getNodeRefs() : new ArrayList<>();*/
         return findNodesByPropertyAndType(UnioviContentModel.TYPE_STUDENT_TASK,UnioviContentModel.PROP_STUDENT_TASK_DUE_DATE,"[MIN TO NOW/DAY]");
     }
+
+    @Override
+    public List<NodeRef> getStudentTasksForTask(NodeRef taskRef) {
+        return findNodesByPropertyAndType(UnioviContentModel.TYPE_STUDENT_TASK,UnioviContentModel.PROP_STUDENT_TASK_PARENT_UUID,taskRef.getId());
+    }
+
 
     public void setNamespaceService(NamespaceService namespaceService) {
         this.namespaceService = namespaceService;

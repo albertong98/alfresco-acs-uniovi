@@ -10,4 +10,6 @@ public interface SearchService {
     NodeRef findOneNodeByPropertyAndType(QName type, QName property, String value);
     List<NodeRef> getAllExpiredStudentTasks();
 
+    List<NodeRef> getStudentTasksForTask(NodeRef taskRef);
+
 }
