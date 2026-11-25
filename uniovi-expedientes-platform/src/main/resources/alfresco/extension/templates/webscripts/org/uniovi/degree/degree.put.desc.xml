@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Update a degree</shortname>
+    <description>PUT - Update a degree</description>
+    <url>/uniovi/degree</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <family>Uniovi</family>
+</webscript>

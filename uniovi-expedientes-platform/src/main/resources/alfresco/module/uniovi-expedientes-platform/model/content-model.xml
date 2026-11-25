@@ -220,11 +220,17 @@
 
         <aspect name="uo:degreeAsp">
             <properties>
+                <property name="uo:degreeId">
+                    <type></type>
+                </property>
                 <property name="uo:degreeName">
                     <type>d:text</type>
                 </property>
                 <property name="uo:degreeCenter">
                     <type>d:text</type>
+                </property>
+                <property name="uo:degreeYears">
+                    <type>d:int</type>
                 </property>
             </properties>
         </aspect>

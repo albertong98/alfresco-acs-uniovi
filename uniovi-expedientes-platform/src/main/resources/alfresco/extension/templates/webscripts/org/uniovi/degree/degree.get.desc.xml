@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Get a degree</shortname>
+    <description>GET - Get a degree</description>
+    <url>/uniovi/degree/{degreeUUID}</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <family>Uniovi</family>
+</webscript>

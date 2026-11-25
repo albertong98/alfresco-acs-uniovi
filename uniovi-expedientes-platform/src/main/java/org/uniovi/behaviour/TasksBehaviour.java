@@ -24,7 +24,7 @@ public class TasksBehaviour implements NodeServicePolicies.BeforeDeleteNodePolic
     }
     @Override
     public void beforeDeleteNode(NodeRef nodeRef) {
-        List<NodeRef> studentTasks = searchService.getStudentTasksForTask(nodeRef);
+        List<NodeRef> studentTasks = searchService.getStudentTasksForTask(nodeRef.getId());
         for(NodeRef studentTask : studentTasks){
             nodeService.deleteNode(studentTask);
         }

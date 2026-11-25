@@ -12,6 +12,7 @@ public class UnioviContentModel {
     public static final QName TYPE_STUDENT_TASK = QName.createQName(unioviNamespaceUri,"studentTask");
     public static final QName TYPE_FILE = QName.createQName(unioviNamespaceUri,"file");
     public static final QName TYPE_SUBJECT = QName.createQName(unioviNamespaceUri,"subject");
+    public static final QName TYPE_DEGREE = QName.createQName(unioviNamespaceUri,"degree");
 
     /** ==== ASPECTS ==== **/
     public static final QName ASPECT_RECORD = QName.createQName(unioviNamespaceUri,"recordAsp");
@@ -56,14 +57,23 @@ public class UnioviContentModel {
     public static final QName PROP_SCHOOL_YEAR = QName.createQName(unioviNamespaceUri,"schoolYear");
     public static final QName PROP_SUBJECT_NAME = QName.createQName(unioviNamespaceUri,"subjectName");
     public static final QName PROP_ENROLLED = QName.createQName(unioviNamespaceUri,"enrolled");
+    public static final QName PROP_DEGREE_UUID = QName.createQName(unioviNamespaceUri,"subjectDegreeUUID");
 
     public static final QName ASPECT_FILES = QName.createQName(unioviNamespaceUri,"filesAsp");
     public static final QName PROP_FILES = QName.createQName(unioviNamespaceUri,"filesUUIDs");
+
+    public static final QName ASPECT_DEGREE = QName.createQName(unioviNamespaceUri,"degreeAsp");
+    public static final QName PROP_DEGREE_ID = QName.createQName(unioviNamespaceUri,"degreeId");
+    public static final QName PROP_DEGREE_NAME = QName.createQName(unioviNamespaceUri,"degreeName");
+    public static final QName PROP_DEGREE_CENTER = QName.createQName(unioviNamespaceUri,"degreeCenter");
+    public static final QName PROP_DEGREE_YEARS = QName.createQName(unioviNamespaceUri,"degreeYears");
+
     /**CONSTANTS**/
     public static final String recordsSiteName ="records";
     public static final String studentsSiteName ="students";
     public static final String tasksSiteName ="tasks";
     public static final String subjectSiteName ="subjects";
+    public static final String degreeSiteName ="degrees";
 
 
     public static final String taskPendingStatus ="Pendiente";

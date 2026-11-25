@@ -76,4 +76,15 @@
 		<property name="subjectService" ref="org.uniovi.service.SubjectService"/>
 	</bean>
 
+	<!-- DEGREE -->
+	<bean id="webscript.org.uniovi.degree.degree.post" class="org.uniovi.webscript.degree.CreateDegree" parent="webscript">
+		<property name="degreeService" ref="org.uniovi.service.DegreeService"/>
+	</bean>
+	<bean id="webscript.org.uniovi.degree.degree.put" class="org.uniovi.webscript.degree.UpdateDegree" parent="webscript">
+		<property name="degreeService" ref="org.uniovi.service.DegreeService"/>
+	</bean>
+	<bean id="webscript.org.uniovi.degree.degree.get" class="org.uniovi.webscript.degree.GetDegree" parent="webscript">
+		<property name="degreeService" ref="org.uniovi.service.DegreeService"/>
+	</bean>
+
 </beans>

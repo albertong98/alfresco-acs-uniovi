@@ -26,4 +26,10 @@
         <property name="searchService" ref="org.uniovi.service.SearchService"/>
     </bean>
 
+    <bean id="org.uniovi.behaviour.DegreeBehaviour" class="org.uniovi.behaviour.DegreeBehaviour" init-method="init">
+        <property name="policyComponent" ref="policyComponent"/>
+        <property name="nodeService" ref="org.uniovi.service.NodeService"/>
+        <property name="searchService" ref="org.uniovi.service.SearchService"/>
+    </bean>
+
 </beans>

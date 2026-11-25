@@ -59,4 +59,8 @@
         <property name="fileService" ref="org.uniovi.service.FileService"/>
         <property name="studentService" ref="org.uniovi.service.StudentService"/>
     </bean>
+
+    <bean id="org.uniovi.service.DegreeService" class="org.uniovi.service.impl.DegreeServiceImpl">
+        <property name="nodeService" ref="org.uniovi.service.NodeService"/>
+    </bean>
 </beans>

@@ -76,8 +76,13 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public List<NodeRef> getStudentTasksForTask(NodeRef taskRef) {
-        return findNodesByPropertyAndType(UnioviContentModel.TYPE_STUDENT_TASK,UnioviContentModel.PROP_STUDENT_TASK_PARENT_UUID,taskRef.getId());
+    public List<NodeRef> getStudentTasksForTask(String taskUUID) {
+        return findNodesByPropertyAndType(UnioviContentModel.TYPE_STUDENT_TASK,UnioviContentModel.PROP_STUDENT_TASK_PARENT_UUID,taskUUID);
+    }
+
+    @Override
+    public List<NodeRef> getSubjectsForDegree(String degreeUUID) {
+        return findNodesByPropertyAndType(UnioviContentModel.TYPE_STUDENT_TASK,UnioviContentModel.PROP_DEGREE_UUID,degreeUUID);
     }
 
 
